@@ -15,7 +15,7 @@ Avant de commencer, vérifiez que vous êtes bien à jour !
 A la fin de chaque session, n'oubliez pas d'uploader vos modifications avant de laisser la main à quelqu'un d'autre.
 1. Sauvegardez votre fichier DragonfallExtended.po sous Poeditor pour générer le fichier .mo
 2. Sous Poeditor Faites "Fichier" et "Exporter en HTML" et sauvegardez DragonfallExtended.html dans le même répertoire.
-3. Commit via **git commit -a -m "Segments: XXXX à XXXX"** ou équivalent via **git add -A** puis **git commit**, le message du commit peut indiquer les segments traduits ou relus.
+3. Commit via **git commit -a**  ou équivalent via **git add -A** puis **git commit**, pour plus de clarté le message du commit peut indiquer les segments traduits ou relus (commit -m "Segments: XXXX à XXXX") mais ce n'est pas absolument obligatoire.
 4. Push via **git push**
 
 
