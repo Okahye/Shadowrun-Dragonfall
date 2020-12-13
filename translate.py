@@ -7,21 +7,18 @@ translator = Translator()#service_urls=['translate.google.fr']
 
 
 
-def batch_query(po,batch=100):
+def batch_query(po,entries):
     english =[]
     oldfrench =[]
     entree = []
-    pb=0
-    for entry in po.fuzzy_entries():
-        #entry.flags.remove('fuzzy')
-        if entry.msgid == entry.msgstr:
-            english.append(entry.msgid)
-            oldfrench.append(entry.msgstr)
-            entree.append(entry)
-            pb+=1
-            if pb > batch:
-                break
     french =[]
+    pb=0
+    for entry in entries:
+        english.append(entry.msgid)
+        oldfrench.append(entry.msgstr)
+        entree.append(entry)
+       
+    
     try:
         french = translator.translate(english,src='en',dest='fr')
         print(french[0])
@@ -31,21 +28,15 @@ def batch_query(po,batch=100):
 
 
     for i in range(len(french)):
-        print('-----------------------')
-        print(english[i])
+        #print('-----------------------')
+        #print(english[i])
         # print('       -------         ')
         # print(oldfrench[i])
-        print('       -------         ')
-        print(french[i].text)
-        print('-----------------------')
+        #print('       -------         ')
+        #print(french[i].text)
+        #print('-----------------------')
         entree[i].msgstr=french[i].text
 
-def nbechecs(po):
-    nb=0
-    for entry in po.fuzzy_entries():
-        if entry.msgid == entry.msgstr:
-            nb+=1
-    return nb
 
 if __name__ == "__main__":
     po = polib.pofile('DragonfallExtended.po')
@@ -56,11 +47,13 @@ if __name__ == "__main__":
     print('untranslated entries=',len(po.untranslated_entries()))
     print('fuzzies entries     =',len(po.fuzzy_entries()))
     
-    echecs=nbechecs(po)
-    while(echecs>0):
-        print('nbechecs=',echecs)
-        batch_query(po,2)
-        echecs=nbechecs(po)
-        sys.exit()
+    entries = po.fuzzy_entries()
+    batch_size=100
+    batch=0
+    while(batch+batch_size<len(entries)):
+        print('batch=',batch)
+        batch_query(po,entries[batch:batch+batch_size])
+        batch+=batch_size
+    batch_query(po,entries[-batch_size:])  
 
     po.save('DragonfallExtendedCompletedAuto.po')
