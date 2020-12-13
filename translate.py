@@ -22,6 +22,8 @@ def batch_query(po,entries):
             size+=len(entry.msgid)
             #french.append(entry.msgstr)
     print('batch size query=',size)   
+    if size==0: #rien à traiter dans ce batch
+        return 0
     if size>=5000:
         sys.exit()
     
@@ -31,6 +33,7 @@ def batch_query(po,entries):
         print(french[0])
     except:
         print('requête échouée')
+        po.save('DragonfallExtendedCompletedAuto.po')
         sys.exit()
 
 
