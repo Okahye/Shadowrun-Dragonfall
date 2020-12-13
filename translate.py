@@ -3,7 +3,7 @@
 import polib
 import sys
 from googletrans import Translator
-translator = Translator()#service_urls=['translate.google.fr']
+translator = Translator(raise_exception=True)#service_urls=['translate.google.fr']
 
 
 
@@ -13,13 +13,20 @@ def batch_query(po,entries):
     entree = []
     french =[]
     pb=0
+    size=0
     for entry in entries:
-        english.append(entry.msgid)
-        oldfrench.append(entry.msgstr)
-        entree.append(entry)
-       
+        if entry.msgid == entry.msgstr: #pour ne pas refaire ceux qui ont marché
+            english.append(entry.msgid)
+            oldfrench.append(entry.msgstr)
+            entree.append(entry)
+            size+=len(entry.msgid)
+            #french.append(entry.msgstr)
+    print('batch size query=',size)   
+    if size>=5000:
+        sys.exit()
     
     try:
+        #toto =[]
         french = translator.translate(english,src='en',dest='fr')
         print(french[0])
     except:
@@ -35,7 +42,9 @@ def batch_query(po,entries):
         #print('       -------         ')
         #print(french[i].text)
         #print('-----------------------')
+        #entree[i].msgstr=french[i]
         entree[i].msgstr=french[i].text
+    return size
 
 
 if __name__ == "__main__":
@@ -48,12 +57,13 @@ if __name__ == "__main__":
     print('fuzzies entries     =',len(po.fuzzy_entries()))
     
     entries = po.fuzzy_entries()
-    batch_size=100
+    batch_size=20
     batch=0
+    size=0
     while(batch+batch_size<len(entries)):
-        print('batch=',batch)
-        batch_query(po,entries[batch:batch+batch_size])
+        print('batch=',batch,' totalsizequery=',size)
+        size+=batch_query(po,entries[batch:batch+batch_size])
         batch+=batch_size
-    batch_query(po,entries[-batch_size:])  
+    #batch_query(po,entries[-batch_size:])  
 
     po.save('DragonfallExtendedCompletedAuto.po')
