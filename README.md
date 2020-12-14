@@ -2,7 +2,11 @@
 
 Branche secondaire de la traduction en français de Dragonfall
 
-Toutes les traductions automatiques non vérifiées manuellement (56% du total) qui avaient été générées au départ (probablement 2015) ont été remplacées par des traductions de google translate (décembre 2020) de bien meilleure qualité
+Toutes les traductions automatiques non vérifiées manuellement (56% du total) qui avaient été générées au départ (probablement 2015) vont être remplacées par des traductions de google translate (décembre 2020) de bien meilleure qualité
+
+``
+ÉTANT DONNÉE LES LIMITATIONS DE L'API GOOGLE TRANSLATE LES VERSIONS DÉPOSÉES DANS CET REPO SONT POUR L'INSTANT INUTILES
+``
 
 ## Instructions pour jouer en français
 
