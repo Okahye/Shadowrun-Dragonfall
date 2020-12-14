@@ -2,6 +2,7 @@
 
 import polib
 import sys
+import time
 from googletrans import Translator
 translator = Translator(raise_exception=True)#service_urls=['translate.google.fr']
 
@@ -60,13 +61,14 @@ if __name__ == "__main__":
     print('fuzzies entries     =',len(po.fuzzy_entries()))
     
     entries = po.fuzzy_entries()
-    batch_size=20
-    batch=0
+    batch_size=5
+    batch=590
     size=0
     while(batch+batch_size<len(entries)):
         print('batch=',batch,' totalsizequery=',size)
         size+=batch_query(po,entries[batch:batch+batch_size])
         batch+=batch_size
+        time.sleep(2)
     #batch_query(po,entries[-batch_size:])  
 
     po.save('DragonfallExtendedCompletedAuto.po')
