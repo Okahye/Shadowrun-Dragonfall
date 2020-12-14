@@ -6,7 +6,8 @@ import time
 from googletrans import Translator
 translator = Translator(raise_exception=True)#service_urls=['translate.google.fr']
 
-
+DEBUG = False
+NBBATCHDONE=0
 
 def batch_query(po,entries):
     english =[]
@@ -21,19 +22,23 @@ def batch_query(po,entries):
             oldfrench.append(entry.msgstr)
             entree.append(entry)
             size+=len(entry.msgid)
-            #french.append(entry.msgstr)
+            if DEBUG:
+                french.append(entry.msgstr)
     print('batch size query=',size)   
     if size==0: #rien à traiter dans ce batch
         return 0
-    if size>=5000:
+    if size>=15000:
+        print("batch size>15000 abort before to be banned, previous batch done=",NBBATCHDONE)
         sys.exit()
     
     try:
-        #toto =[]
-        french = translator.translate(english,src='en',dest='fr')
-        print(french[0])
+        if DEBUG:
+            print('translate debug')
+        else:
+            french = translator.translate(english,src='en',dest='fr')
+        print('\n-----------------------\n',french[0],'\n-----------------------\n')
     except:
-        print('requête échouée')
+        print('requête échouée, batch done',NBBATCHDONE)
         po.save('DragonfallExtendedCompletedAuto.po')
         sys.exit()
 
@@ -46,12 +51,18 @@ def batch_query(po,entries):
         #print('       -------         ')
         #print(french[i].text)
         #print('-----------------------')
-        #entree[i].msgstr=french[i]
-        entree[i].msgstr=french[i].text
+        if DEBUG:
+            entree[i].msgstr=french[i]
+        else:
+            entree[i].msgstr=french[i].text
     return size
 
 
 if __name__ == "__main__":
+    if len(sys.argv)>1:
+        print('DEBUG ON')
+        DEBUG=True
+    
     po = polib.pofile('DragonfallExtended.po')
 
     nb_entries = len(po)
@@ -61,14 +72,18 @@ if __name__ == "__main__":
     print('fuzzies entries     =',len(po.fuzzy_entries()))
     
     entries = po.fuzzy_entries()
-    batch_size=5
-    batch=590
+    batch_size=120
+    batch=595
     size=0
+    
     while(batch+batch_size<len(entries)):
         print('batch=',batch,' totalsizequery=',size)
         size+=batch_query(po,entries[batch:batch+batch_size])
         batch+=batch_size
-        time.sleep(2)
+        if not DEBUG:
+            time.sleep(5)
+        NBBATCHDONE+=1
     #batch_query(po,entries[-batch_size:])  
 
     po.save('DragonfallExtendedCompletedAuto.po')
+    print('nb_batch traités=',NBBATCHDONE)
