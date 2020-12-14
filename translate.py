@@ -27,8 +27,8 @@ def batch_query(po,entries):
     print('batch size query=',size)   
     if size==0: #rien à traiter dans ce batch
         return 0
-    if size>=15000:
-        print("batch size>15000 abort before to be banned, previous batch done=",NBBATCHDONE)
+    if size>=5000:
+        print("batch size>5000 abort before to be banned, previous batch done=",NBBATCHDONE)
         sys.exit()
     
     try:
@@ -72,7 +72,7 @@ if __name__ == "__main__":
     print('fuzzies entries     =',len(po.fuzzy_entries()))
     
     entries = po.fuzzy_entries()
-    batch_size=120
+    batch_size=18
     batch=595
     size=0
     
