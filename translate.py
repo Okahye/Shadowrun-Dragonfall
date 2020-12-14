@@ -73,7 +73,7 @@ if __name__ == "__main__":
     
     entries = po.fuzzy_entries()
     batch_size=18
-    batch=595
+    batch=703
     size=0
     
     while(batch+batch_size<len(entries)):
