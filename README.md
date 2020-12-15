@@ -2,16 +2,12 @@
 
 Branche secondaire de la traduction en français de Dragonfall
 
-Toutes les traductions automatiques non vérifiées manuellement (56% du total) qui avaient été générées au départ (probablement 2015) vont être remplacées par des traductions de google translate (décembre 2020) de bien meilleure qualité
-
-``
-ÉTANT DONNÉE LES LIMITATIONS DE L'API GOOGLE TRANSLATE LES VERSIONS DÉPOSÉES DANS CET REPO SONT POUR L'INSTANT INUTILES
-``
+Toutes les traductions automatiques non vérifiées manuellement (56% du total) qui avaient été générées au départ (probablement 2015) ont été remplacées par des traductions de google translate (décembre 2020) de bien meilleure qualité
 
 ## Instructions pour jouer en français
 
-1. <https://github.com/pepin-de-landen/Shadowrun-Dragonfall/blob/master/DragonfallExtended.mo> version compilée contenant environ 50% de dialogues en français vérifiés manuellement et le reste en anglais
-2. <https://github.com/pepin-de-landen/Shadowrun-Dragonfall/blob/master/FullFrench.mo> traduction complète (version compilée) où les dialogues non vérifiés sont françisés automatiquement par Google Translate :
+1. <https://github.com/pepin-de-landen/Shadowrun-Dragonfall/blob/master/DragonfallExtended.mo> version compilée contenant 44% de dialogues en français vérifiés manuellement et le reste en anglais
+2. <https://github.com/pepin-de-landen/Shadowrun-Dragonfall/blob/master/FullFrench.mo> traduction complète (version compilée) où les dialogues non vérifiés sont françisés automatiquement par Google Translate (56% d'entre eux sont potentiellement incorrects)
 
 Comment installer la traduction ?
 

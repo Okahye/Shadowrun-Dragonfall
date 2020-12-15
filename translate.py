@@ -110,8 +110,9 @@ if __name__ == "__main__":
         if not DEBUG:
             time.sleep(5)
         NBBATCHDONE+=1
-        po.save('DragonfallExtendedCompletedAuto.po')
-        print('nb_batches saved=',NBBATCHDONE)
+        if size>0:
+            po.save('DragonfallExtendedCompletedAuto.po')
+        print('nb_batches saved=',NBBATCHDONE," data=",size)
     #batch_query(po,entries[-batch_size:])  
 
     po.save('DragonfallExtendedCompletedAuto.po')
