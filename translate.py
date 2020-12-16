@@ -80,8 +80,22 @@ def batch_query(po,entries):
             entree[i].msgstr=french[i]#.text
     return size
 
+def harmonise_end_lines():
+    po = polib.pofile('DragonfallExtended.po')
+    for e in po.fuzzy_entries():
+        if e.msgstr[-1]=='.' and (e.msgid[-1]=='!' or e.msgid[-1]=='?' or e.msgid[-1]==')'):
+            print('\n-----------------\n')
+            print(e.msgid)
+            #print('(',e.msgid[-1],')')
+            print(e.msgstr)
+            #print('(',e.msgstr[-1],')')
+            e.msgstr=e.msgstr[0:-1]+e.msgid[-1]
+            print(e.msgstr)
+    po.save('DragonfallExtendedCompletedAuto.po')
 
 if __name__ == "__main__":
+    harmonise_end_lines()
+    sys.exit()
     if len(sys.argv)>1:
         print('DEBUG ON')
         DEBUG=True
