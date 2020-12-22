@@ -93,9 +93,26 @@ def harmonise_end_lines():
             print(e.msgstr)
     po.save('DragonfallExtendedCompletedAuto.po')
 
+def check():
+    import re
+    po = polib.pofile('DragonfallExtended.po')
+    for e in po.fuzzy_entries():
+        res=re.search(r"\{\{/GM\}\}",e.msgstr)
+        res2=re.search(r"\{\{/GM\}\}",e.msgid)
+        if res is not None or res2 is not None:
+            #print('.',end='')
+            print(e.msgid)
+            res3=re.search(r"\{\{GM\}\}",e.msgstr)
+            res4=re.search(r"\{\{GM\}\}",e.msgstr)
+            if res3 is None or res4 is None:
+                print(e.msgstr)
+
+
 if __name__ == "__main__":
-    harmonise_end_lines()
+    #harmonise_end_lines()
+    check()
     sys.exit()
+    
     if len(sys.argv)>1:
         print('DEBUG ON')
         DEBUG=True
