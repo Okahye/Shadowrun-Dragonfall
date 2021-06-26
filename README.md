@@ -6,7 +6,7 @@ Toutes les traductions automatiques non vérifiées manuellement (56% du total) 
 
 ## Instructions pour jouer en français
 
-1. <https://github.com/pepin-de-landen/Shadowrun-Dragonfall/blob/master/DragonfallExtended.mo> version compilée contenant 49% de dialogues en français vérifiés manuellement et le reste en anglais
+1. <https://github.com/Okahye/Shadowrun-Dragonfall/blob/master/DragonfallExtended.mo> version compilée contenant 49% de dialogues en français vérifiés manuellement et le reste en anglais
 2. <https://github.com/pepin-de-landen/Shadowrun-Dragonfall/blob/master/FullFrench.mo> traduction complète (version compilée) où les dialogues non vérifiés sont françisés automatiquement par Google Translate (51% d'entre eux sont potentiellement incorrects)
 
 Comment installer la traduction ?
